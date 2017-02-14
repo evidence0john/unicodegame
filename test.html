@@ -1,0 +1,102 @@
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" charset="utf-8"/>
+<div style="width:100%; height:300px;position:absolute;text-align:right;">
+	<input type="button" name="sp0" value="restart" onclick="einit();">　
+</div>
+<p>life ﾟ ∀ﾟ)ノx3</p>
+<div id="div" style="width:100%; height:300px; position:absolute;"></div>
+<div id="dive" style="width:100%; height:300px;"></div>
+
+<script type="text/javascript">
+	var player=" ﾟ∀ﾟ)=";
+	var pcont=" ﾟ∀ﾟ)=";
+	var pfire="(ゝ∀･)=";
+	var pwin="(σﾟдﾟ)σ";
+	var buffer=player;
+	var air="　";
+	var bulfx="";
+	var bfxc=0;
+	var bullet=">";
+	var bulstat=0;
+	var line="";
+	var endl="\n";
+	var emline=5;
+	var emp="(`ヮ´ )";
+	var emf="･ﾟ( ﾉд`ﾟ)";
+	var eminit="";
+	function rep(str,times)
+	{
+		var nstr="";
+		while(times--){
+			nstr=nstr+str;
+		}
+		return nstr;
+	}
+	function hited()
+	{
+		eminit=rep(endl,emline)+rep(air,9)+emf;
+		document.getElementById('dive').innerText=eminit;
+	}
+	function einit()
+	{
+		eminit=rep(endl,emline)+rep(air,10)+emp;
+		player=pcont;
+		buffer=player;
+		line="";
+		document.getElementById('dive').innerText=eminit;
+	}
+	function up()
+	{
+		line=line.slice(1);
+		buffer=line+player;
+		document.getElementById('div').innerText=buffer;
+	}
+	function down()
+	{
+		line=line+endl;
+		buffer=line+player;
+		document.getElementById('div').innerText=buffer;
+	}
+	function run()
+	{
+		if(bfxc==0){bulfx='o';player=pfire;}
+			if(bfxc==6){bulfx='O'+bulfx.slice(1);}
+				if(bfxc==9){bulfx=bulfx.slice(1);player=pcont;}
+		bulfx=bulfx+air;
+		buffer=line+player+bulfx+bullet;
+		bfxc++;
+		if(buffer.length-line.length>20){
+			buffer=line+player;
+			bulfx="";
+			bfxc=0;
+			stop();
+			if(line.length==5){
+				player=pwin;
+				buffer=line+player;
+				hited();
+			}
+		}
+	}
+	setInterval("document.getElementById('div').innerText=buffer",20);
+	einit();
+	var astat;//=setInterval("run();",100);
+	function stop()
+	{
+		if(bulstat!=0)bulstat=0;
+		else return;
+		clearInterval(astat);
+	}
+	function fire()
+	{
+		if(bulstat!=0)return;
+		bulstat=1;
+		astat=setInterval("run();",10);
+	}
+</script>
+<!--<input type="button" name="st0" value="stop" onclick="stop();">-->
+<div style="width:100%; height:300px;">
+	<input type="button" name="sp0" value=" up　" onclick="up();">
+	<div style="width:100%; height:30px;text-align:right;">
+		<input type="button" name="st1" value="fire" onclick="fire();">
+	</div>
+	<input type="button" name="sp1" value="down" onclick="down();">
+</div>
