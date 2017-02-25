@@ -1,0 +1,52 @@
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" charset="utf-8"/>
+<style type="text/css">
+@font-face {
+  font-family: BASE;
+  src: local('PingFang SC'),
+       local("Microsoft Yahei");
+}
+body {
+	color: #fff;
+	background-color: #333;
+	/*font-family: "Microsoft YaHei" ! important;*/
+	font-family: BASE;
+}
+p {background-color: #ccc}
+</style>
+
+<div style="width:100%; height:300px;position:absolute;text-align:right;">
+  <input type="image" src="play.png" onclick="init();" />　　　　
+</div>
+
+<p>　score (=ﾟωﾟ)=<br />
+　life ﾟ ∀ﾟ)ノx3</p>
+
+<div id="div" style="width:100%; height:300px; position:absolute;"></div>
+<div id="divp" style="width:100%; height:300px; position:absolute;"></div>
+<div id="dive" style="width:100%; height:300px;"></div>
+<script src="player.js" type="text/javascript"></script>
+<script type="text/javascript">
+        /*Global*/
+        var endl='\n';
+        var air='　';
+        
+        var cplayer=' ﾟ∀ﾟ)=';
+		var pfire='(ゝ∀･)=';
+		var pwin='(σﾟдﾟ)σ';
+        var bullet='>';
+        
+        player.init('divp',cplayer,pfire,bullet,air,endl);
+        setInterval("document.getElementById('divp').innerText=player.buf",20);
+</script>
+
+<div style="width:100%; height:300px;text-align:justify;">
+  <input type="image" src="air.png" />
+  <input type="image" name="sp0" src="up.png" onclick="player.up();" /><br />
+  <input type="image" name="sp2" src="left.png" onclick="player.left();" />
+  <input type="image" src="air.png" />
+  <input type="image" name="sp3" src="right.png" onclick="player.right();" />
+  <input type="image" src="air.png" />
+  <input type="image" name="st1" src="fire.png" onclick="player.fire();" /><br />
+  <input type="image" src="air.png" />
+  <input type="image" name="sp1" src="down.png" onclick="player.down();" />
+</div>
